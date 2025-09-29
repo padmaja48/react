@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "./context/AuthContext";
+import { AuthContext } from "./services/context/AuthContext";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
@@ -52,14 +52,16 @@ export function Home(){
 
 function Products() {
     const [products, setProducts] = useState([]);
-    const {token,user}=useContext(AuthContext);
-    const getProducts = async() => {
-        let response = await axios.get("http://localhost:8000/api/products/",{
-             headers: {
-            Authorization: `Token ${token}`
-          }
+    const { token, user } = useContext(AuthContext);
 
-    });
+    const getProducts = async() => {
+
+        console.log("Fetching products with token:", token);
+        let response = await axios.get("http://localhost:8000/api/products/", {
+            headers: {
+                Authorization: `Token ${token}`
+            }
+        });
         if(response.status === 200){
             setProducts(response.data);
         }
