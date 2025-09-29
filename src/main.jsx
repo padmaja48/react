@@ -1,17 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {App} from './App';
+import App from './App.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import './index.css'; // You can add your custom styles here
-import { AuthContextProvider } from './services/context/AuthContext';
 import { BrowserRouter } from 'react-router-dom';
-import {Home} from './home';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+import { AuthContextProvider } from './services/context/AuthContext.jsx';
+import { Button } from 'react-bootstrap';
+import { Home } from './home.jsx';
+ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
   <AuthContextProvider>
-      <App/>
-  </AuthContextProvider>
-  </BrowserRouter>
+    <Home />
+    </AuthContextProvider>
+  </BrowserRouter>,
 );
